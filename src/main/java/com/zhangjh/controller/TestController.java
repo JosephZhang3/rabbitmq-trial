@@ -38,6 +38,9 @@ public class TestController {
         this.refundNotifySender = refundNotifySender;
     }
 
+    /**
+     * 提交订单
+     */
     @RequestMapping("/placeOrder")
     public void placeOrder() {
         paymentNotifySender.send("支付订单号：" + System.nanoTime());
@@ -49,15 +52,18 @@ public class TestController {
         apiCoreSender.userQuery("用户查询");
     }
 
-    @RequestMapping("/payment")
-    public void payment() {
+    @RequestMapping("/query")
+    public void query() {
         apiPaymentSender.order("订单管理");
         apiPaymentSender.orderQuery("订单查询");
         apiPaymentSender.orderDetailQuery("订单详情查询");
     }
 
-    @RequestMapping("/credit")
-    public void creditBankJustType() {
+    /**
+     * 检查授信是否匹配
+     */
+    @RequestMapping("/checkCredit")
+    public void checkCredit() {
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("type", "cash");
         apiCreditSender.creditBank(headerMap, "银行授信，部分匹配");
@@ -80,17 +86,26 @@ public class TestController {
         apiCreditSender.creditFinance(headerMap, "金融公司授信，完全匹配");
     }
 
-    @RequestMapping("/report")
+    /**
+     * 生成报表
+     */
+    @RequestMapping("/generateReport")
     public void generateReport() {
         apiReportSender.generateReport("开始生成报表 QAQ");
     }
 
+    /**
+     * 一对多的提醒
+     */
     @RequestMapping("/one2many")
     public void one2many() {
         for (int i = 0; i <= 20; i++)
             paymentNotifySender.send("提醒-支付订单号：" + i);
     }
 
+    /**
+     * 以对象的方式传递消息
+     */
     @RequestMapping("/objMsg")
     public void objMsg() {
         Order order = new Order();
