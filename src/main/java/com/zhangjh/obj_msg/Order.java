@@ -13,6 +13,9 @@ import java.util.Date;
  */
 public class Order implements Serializable {
 
+    //类的唯一序列化标识，避免与其它同名类混淆
+    private static final long serialVersionUID = 1l;
+
     private String orderId;
     private BigDecimal amount;
     private Date creatTime;
@@ -43,6 +46,6 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "订单ID->" + this.getOrderId() + "\t金额->" + this.getAmount() + "\t创建时间->" + this.getCreatTime();
+        return "[订单ID:" + this.getOrderId() + ",金额:" + this.getAmount() + ",创建时间:" + this.getCreatTime() + "]";
     }
 }
