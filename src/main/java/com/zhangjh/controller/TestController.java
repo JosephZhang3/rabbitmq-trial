@@ -21,18 +21,22 @@ import java.util.Map;
 @RequestMapping("/api")
 public class TestController {
 
+    private final PaymentNotifySender paymentNotifySender;
+    private final ApiCoreSender apiCoreSender;
+    private final ApiPaymentSender apiPaymentSender;
+    private final ApiCreditSender apiCreditSender;
+    private final ApiReportSender apiReportSender;
+    private final RefundNotifySender refundNotifySender;
+
     @Autowired
-    private PaymentNotifySender paymentNotifySender;
-    @Autowired
-    private ApiCoreSender apiCoreSender;
-    @Autowired
-    private ApiPaymentSender apiPaymentSender;
-    @Autowired
-    private ApiCreditSender apiCreditSender;
-    @Autowired
-    private ApiReportSender apiReportSender;
-    @Autowired
-    private RefundNotifySender refundNotifySender;
+    public TestController(PaymentNotifySender paymentNotifySender, ApiCoreSender apiCoreSender, ApiPaymentSender apiPaymentSender, ApiCreditSender apiCreditSender, ApiReportSender apiReportSender, RefundNotifySender refundNotifySender) {
+        this.paymentNotifySender = paymentNotifySender;
+        this.apiCoreSender = apiCoreSender;
+        this.apiPaymentSender = apiPaymentSender;
+        this.apiCreditSender = apiCreditSender;
+        this.apiReportSender = apiReportSender;
+        this.refundNotifySender = refundNotifySender;
+    }
 
     @RequestMapping("/placeOrder")
     public void placeOrder() {
