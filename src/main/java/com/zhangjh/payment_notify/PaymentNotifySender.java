@@ -6,13 +6,20 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * 支付提醒消息发送器
+ */
 @Component
 public class PaymentNotifySender {
 
-    @Autowired
-    private AmqpTemplate rabbitTemplate;
-
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private final AmqpTemplate rabbitTemplate;
+
+    @Autowired
+    public PaymentNotifySender(AmqpTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
     public void send(String msg) {
         logger.info("往队列 notify.payment 中投递消息：" + msg);

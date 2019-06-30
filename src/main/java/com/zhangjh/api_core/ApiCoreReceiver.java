@@ -14,7 +14,7 @@ public class ApiCoreReceiver {
     @RabbitHandler
     @RabbitListener(queues = "api.core")
     public void user(String msg) {
-        logger.info("从api.core队列中接收到消息：" + msg);
+        logger.info("从api.core队列中【接收】到消息：" + msg);
     }
 
 }
