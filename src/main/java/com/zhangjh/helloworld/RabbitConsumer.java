@@ -8,7 +8,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * 消息消费者
- * 手动档，不使用注解，一行行手撸
+ * 手动档，不使用注解，一行行手搓
  */
 public class RabbitConsumer {
     private static final String QUEUE_NAME = "queue_demo";
